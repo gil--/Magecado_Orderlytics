@@ -21,9 +21,9 @@
                             <show_in_store>1</show_in_store>
                         </enabled>
                         <js_obj translate="label comment">
-                            <label>Javascript Object Name</label>
+                            <label>JavaScript Object Name</label>
                             <frontend_type>text</frontend_type>
-                            <comment>This is the Javascript object name you wll use to access the data. Default: Mage_Order</comment>
+                            <comment>This is the JavaScript object name you wll use to access the data. Default: Mage_Order</comment>
                             <sort_order>10</sort_order>
                             <validate>required-entry</validate>
                             <show_in_default>1</show_in_default>
