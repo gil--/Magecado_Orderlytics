@@ -1,0 +1,145 @@
+<?php
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Magento Successful Order DataLayer Helper
+ Author: Magecado, 2015
+
+ (Data is pushed to client as JS Object)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/*
+    Get Config Options
+*/
+$js_obj = $this->getConfig('js_obj'); //string "Mage_Order"
+// Order Options
+$conf_orderTotal = $this->getConfig('order_total'); //string "grand_total" or "subtotal_tax" or "subtotal_ship"
+$conf_orderCurrency = $this->getConfig('order_currency'); //string 0=false, 1=true
+// Product Options
+$conf_orderItems = $this->getConfig('order_items'); //string 0=false, 1=true
+$conf_productId = $this->getConfig('product_id'); //string "product_id" or "product_sku"
+// Customer Options
+$conf_customerData = explode(",", $this->getConfig('customer_data_select')); //string "id,name,email,countryid"
+$conf_customerGuest = $this->getConfig('customer_guest'); //string 0=false, 1=true
+
+
+/*
+  ////////////~~~~~ Order Data ~~~~~////////////
+*/
+// Get the successful order
+$order = Mage::getModel('sales/order')->loadByIncrementId(Mage::getSingleton('checkout/session')->getLastRealOrderId());
+switch ($conf_orderTotal) {
+    case 'grand_total':
+      $orderTotalType = $order->getGrandTotal();
+      break;
+    case 'subtotal_tax':
+      $orderTotalType = $order->getGrandTotal();
+      break;
+    case 'subtotal_ship':
+      $orderTotalType = $order->getGrandTotal();
+      break;
+}
+$orderTotal = Mage::helper('core')->currency($orderTotalType, false, false);
+$orderData[] = array(
+    'id' => $order->getIncrementId(),
+    'total' => $orderTotal
+);
+
+if($conf_orderCurrency) {
+  $orderData['currency_code'] = Mage::app()->getStore()->getCurrentCurrencyCode();
+}
+
+// encodes the user data into JSON object
+$orderDataJson = json_encode($orderData);
+
+
+/*
+ ////////////~~~~~ Products Data ~~~~~////////////
+ */
+if($conf_orderItems) {
+  $orderItems = $order->getItemsCollection();
+  $orderedProducts = array();
+
+   // For every product ordered, add the product id and price to an array
+  foreach ($orderItems as $item){
+      if ($item->getParentItem()) continue;
+
+      if ($conf_productId == 'product_id'){
+        $product_id = $item->product_id;
+      } else {
+        $product_id = $item->getSku;
+      }
+
+      $product_price =  Mage::helper('core')->currency($item->getPrice(), false, false);
+      array_push($orderedProducts, array("id"    => $product_id,
+                                         "price" => $product_price));
+  }
+  // encodes the PHP array into JSON object
+  $orderedProductsJson = json_encode($orderedProducts);
+}
+
+/*
+ ////////////~~~~~ Customer Data ~~~~~////////////
+ */
+/** @var Mage_Customer_Model_Session $customerSession */
+$customerSession = Mage::getSingleton('customer/session');
+if($conf_customerGuest || $customerSession->isLoggedIn()) {
+  $customerData = array();
+
+  if ($customerSession->isLoggedIn()) {
+      $customer = $customerSession->getCustomer();
+
+      foreach($conf_customerData as $customerAttr) {
+          switch ($customerAttr) {
+            case 'id':
+              $customerData['id'] = $customer->getId();
+              break;
+            case 'first_name':
+              $customerData['first_name'] = $customer->getFirstname();
+              break;
+            case 'last_name':
+              $customerData['last_name'] = $customer->getLastname();
+              break;
+            case 'email':
+              $customerData['email'] = $customer->getEmail();
+              break;
+            case 'country':
+                $customerData['country'] = $order->getBillingAddress()->getCountry();
+                break;
+          }
+      }
+  } else {
+      foreach($conf_customerData as $customerAttr) {
+          switch ($customerAttr) {
+            case 'first_name':
+              $customerData['first_name'] = $order->getCustomerFirstname();
+              break;
+            case 'last_name':
+              $customerData['last_name'] = $order->getCustomerLastname();
+              break;
+            case 'email':
+              $customerData['email'] = $order->getCustomerEmail();
+              break;
+            case 'country':
+              $customerData['country'] = $order->getBillingAddress()->getCountry();
+              break;
+          }
+      }
+  }
+  // encodes the user data into JSON object
+  $customerDataJson = json_encode($customerData);
+}
+?>
+<script>
+  var <?php echo $js_obj ?> = {
+  <?php
+    if($orderDataJson !== null) {
+      echo 'order_data :' . $orderDataJson . ',';
+    }
+    if($orderedProductsJson !== null) {
+      echo 'product_data :' . $orderedProductsJson . ',';
+    }
+    if($customerDataJson !== null) {
+      echo 'customer_data :' . $customerDataJson . ',';
+    }
+  ?>
+}
+</script>

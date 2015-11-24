@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <sales>
+            <groups>
+                <orderlytics translate="label" module="sales">
+                    <label>Magecado Orderlytics</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>110</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <js_obj translate="label comment">
+                            <label>Javascript Object Name</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>This is the Javascript object name you wll use to access the data. Default: Mage_Order</comment>
+                            <sort_order>10</sort_order>
+                            <validate>required-entry</validate>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </js_obj>
+                        <order_data translate="label">
+            							<label>Order Data</label>
+                          <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+            							<show_in_default>1</show_in_default>
+            							<show_in_website>1</show_in_website>
+            							<show_in_store>0</show_in_store>
+            							<sort_order>100</sort_order>
+            						</order_data>
+                        <order_total translate="label comment">
+                            <label>Order Total</label>
+                            <comment>Order total can be grand total (incl tax &amp; shipping), sub-total + tax, sub-total + shipping, sub-total (no tax or shipping)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Magecado_Orderlytics_Model_System_Config_Source_OrderTotal</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_total>
+                        <order_currency translate="label comment">
+                            <label>Include Currency</label>
+                            <comment>Include currency code. Some trackers allow currency code to be passed through. (USD, GBP, ILS, etc.)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_currency>
+                        <product_data translate="label">
+            							<label>Product Data</label>
+                          <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+            							<show_in_default>1</show_in_default>
+            							<show_in_website>1</show_in_website>
+            							<show_in_store>0</show_in_store>
+            							<sort_order>200</sort_order>
+            						</product_data>
+                        <order_items translate="label comment">
+                            <label>Include Product Data</label>
+                            <comment>Include order product data (product id, quantity, price)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_items>
+                        <product_id translate="label comment">
+                            <label>Product Unique ID</label>
+                            <comment>Choose what to use as the product id (unique id or sku)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Magecado_Orderlytics_Model_System_Config_Source_ProductId</source_model>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_id>
+                        <customer_data translate="label">
+            							<label>Customer Data</label>
+                          <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+            							<show_in_default>1</show_in_default>
+            							<show_in_website>1</show_in_website>
+            							<show_in_store>0</show_in_store>
+            							<sort_order>300</sort_order>
+            						</customer_data>
+                        <customer_data_select translate="label">
+                            <label>Included Customer Data</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>Magecado_Orderlytics_Model_System_Config_Source_Customer</source_model>
+                            <sort_order>310</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_data_select>
+                        <customer_guest translate="label comment">
+                            <label>Include Guest Customer Data</label>
+                            <comment>Selecting `NO` will only provide the selected Customer Data to the dataLayer when the customer is logged in.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>320</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_guest>
+                    </fields>
+                </orderlytics>
+            </groups>
+        </sales>
+    </sections>
+</config>

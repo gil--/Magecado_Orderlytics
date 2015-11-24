@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_onepage_success>
+        <reference name="before_body_end">
+            <block type="magecado_orderlytics/orderlytics" name="magecado_orderlytics" before="-">
+            <action method="setTemplate" ifconfig="sales/orderlytics/enabled">
+                  <template>magecado/orderlytics/orderlytics.phtml</template>
+              </action>
+            </block>
+        </reference>
+    </checkout_onepage_success>
+</layout>

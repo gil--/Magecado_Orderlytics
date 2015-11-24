@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <global>
+        <blocks>
+            <magecado_orderlytics>
+                <class>Magecado_Orderlytics_Block</class>
+            </magecado_orderlytics>
+        </blocks>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <magecado_orderlytics>
+                    <file>magecado_orderlytics.xml</file>
+                </magecado_orderlytics>
+            </updates>
+        </layout>
+    </frontend>
+    <default>
+        <sales>
+            <orderlytics>
+                <enabled>0</enabled>
+                <js_obj>Mage_Order</js_obj>
+                <order_total>grand_total</order_total>
+                <order_currency>1</order_currency>
+                <order_items>1</order_items>
+                <product_id>0</product_id>
+                <customer_data_select>id,first_name,last_name,email</customer_data_select>
+                <error_message>There was an error submitting the form. Please try again.</error_message>
+                <customer_guest>1</customer_guest>
+            </orderlytics>
+        </sales>
+    </default>
+</config>
