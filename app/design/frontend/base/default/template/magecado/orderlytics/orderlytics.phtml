@@ -28,13 +28,16 @@ $conf_customerGuest = $this->getConfig('customer_guest'); //string 0=false, 1=tr
 $order = Mage::getModel('sales/order')->loadByIncrementId(Mage::getSingleton('checkout/session')->getLastRealOrderId());
 switch ($conf_orderTotal) {
     case 'grand_total':
-      $orderTotalType = $order->getGrandTotal();
+      $orderTotalType = Mage::helper('core')->currency($order->getGrandTotal(), false, false);
       break;
     case 'subtotal_tax':
-      $orderTotalType = $order->getGrandTotal();
+      $orderTotalType = Mage::helper('core')->currency($order->getSubtotal() + $order->getTaxAmount(), false, false);
       break;
     case 'subtotal_ship':
-      $orderTotalType = $order->getGrandTotal();
+      $orderTotalType = Mage::helper('core')->currency($order->getGrandTotal() - $order->getTaxAmount(), false, false);
+      break;
+    case 'subtotal':
+      $orderTotalType = Mage::helper('core')->currency($order->getSubtotal(), false, false);
       break;
 }
 $orderTotal = Mage::helper('core')->currency($orderTotalType, false, false);
