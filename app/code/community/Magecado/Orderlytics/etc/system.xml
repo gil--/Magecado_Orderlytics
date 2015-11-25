@@ -29,6 +29,9 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
                         </js_obj>
                         <order_data translate="label">
             							<label>Order Data</label>
@@ -37,6 +40,9 @@
             							<show_in_website>1</show_in_website>
             							<show_in_store>0</show_in_store>
             							<sort_order>100</sort_order>
+                          <depends>
+                                <enabled>1</enabled>
+                            </depends>
             						</order_data>
                         <order_total translate="label comment">
                             <label>Order Total</label>
@@ -47,6 +53,9 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
                         </order_total>
                         <order_currency translate="label comment">
                             <label>Include Currency</label>
@@ -57,6 +66,9 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
                         </order_currency>
                         <product_data translate="label">
             							<label>Product Data</label>
@@ -65,6 +77,9 @@
             							<show_in_website>1</show_in_website>
             							<show_in_store>0</show_in_store>
             							<sort_order>200</sort_order>
+                          <depends>
+                                <enabled>1</enabled>
+                            </depends>
             						</product_data>
                         <order_items translate="label comment">
                             <label>Include Product Data</label>
@@ -75,6 +90,9 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
                         </order_items>
                         <product_id translate="label comment">
                             <label>Product Unique ID</label>
@@ -85,6 +103,10 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                                <order_items>1</order_items>
+                            </depends>
                         </product_id>
                         <customer_data translate="label">
             							<label>Customer Data</label>
@@ -93,6 +115,9 @@
             							<show_in_website>1</show_in_website>
             							<show_in_store>0</show_in_store>
             							<sort_order>300</sort_order>
+                          <depends>
+                                <enabled>1</enabled>
+                            </depends>
             						</customer_data>
                         <customer_data_select translate="label">
                             <label>Included Customer Data</label>
@@ -102,6 +127,9 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
                         </customer_data_select>
                         <customer_guest translate="label comment">
                             <label>Include Guest Customer Data</label>
@@ -112,6 +140,9 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
                         </customer_guest>
                     </fields>
                 </orderlytics>
