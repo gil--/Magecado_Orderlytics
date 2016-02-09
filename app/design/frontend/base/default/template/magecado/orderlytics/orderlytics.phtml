@@ -40,12 +40,11 @@ switch ($conf_orderTotal) {
       $orderTotalType = Mage::helper('core')->currency($order->getSubtotal(), false, false);
       break;
 }
-$orderTotal = Mage::helper('core')->currency($orderTotalType, false, false);
-$orderData[] = array(
-    'id' => $order->getIncrementId(),
-    'total' => $orderTotal
-);
 
+$orderTotal = Mage::helper('core')->currency($orderTotalType, false, false);
+  $orderData['id'] = $order->getIncrementId();
+  $orderData['total'] = $orderTotal;
+  $orderData['payment_type'] = $order->getPayment()->getMethodInstance()->getCode();
 if($conf_orderCurrency) {
   $orderData['currency_code'] = Mage::app()->getStore()->getCurrentCurrencyCode();
 }
