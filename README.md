@@ -30,6 +30,16 @@ Mage_Order.customer_data.first_name + ' ' + Mage_Order.customer_data.last_name
 ## Example of the JavaScript Markup in the DOM
 ![screen shot 2015-11-23 at 9 43 40 pm](https://cloud.githubusercontent.com/assets/3484527/11356385/4e1ea63e-922b-11e5-8b2e-2cf3212dff5d.png)
 
+## Example of ORder Response Data
+
+```
+{
+  "order_data":{"id":"100000032","total":8.3,"payment_type":"cashondelivery","currency_code":"GBP"},
+  "product_data":[{"id":"1210","price":5}],
+  "customer_data":{"id":"1","first_name":"Gil","last_name":"Greenberg","email":"email@example.com"}
+}"
+```
+
 # License
 
 Copyright (C) 2015 Gil Greenberg
